@@ -36,10 +36,15 @@ var app = {
         app.receivedEvent('deviceready');
 
         console.log("loaded1");
-//            chrome.sockets.udp.create({}, function(s){
-//                chrome.sockets.udp.bind(s.socketId, "172.16.0.0", 0, function(ret){
-//                    chrome.sockets.udp.send(s.socketId, "test", "172.16.0.0", 5019,
-//                            function(sendinfo){console.log("test".byteLength); console.log(sendinfo);})})});
+            chrome.sockets.udp.create({}, function(s){
+                chrome.sockets.udp.bind(s.socketId, "192.168.29.255", 0, function(ret){
+                    chrome.sockets.udp.send(s.socketId, "test", "192.168.29.255", 43278,
+                            function(sendinfo){console.log("test".byteLength); console.log(sendinfo);})})});
+
+        chrome.sockets.udp.create({}, function(s){
+            chrome.sockets.udp.bind(s.socketId, "255.255.255.255", 0, function(ret){
+                chrome.sockets.udp.send(s.socketId, "test", "255.255.255.255", 43278,
+                    function(sendinfo){console.log("test".byteLength); console.log(sendinfo);})})});
         console.log("loaded");
     },
     // Update DOM on a Received Event
