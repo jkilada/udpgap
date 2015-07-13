@@ -45,6 +45,19 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+
+        chrome.sockets.udp.create({}, function(s){
+            console.log("socket created");
+            chrome.sockets.udp.bind(s.socketId, "0.0.0.0", 43278, function(ret){
+                console.log("bound");
+                chrome.sockets.udp.send(s.socketId, "test", "192.168.29.187", 43278,
+                    function(sendinfo){console.log(data.byteLength); console.log(sendinfo);})
+
+                chrome.sockets.udp.send(s.socketId, "test", "192.168.29.255", 43278,
+                    function(sendinfo){console.log(data.byteLength); console.log(sendinfo);})})
+            })});
+
+
     }
 };
 
